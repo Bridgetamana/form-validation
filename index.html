@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User validation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
+</head>
+<body>
+    <div id="form-wrapper">
+        <h1>Create account</h1>
+        <form>
+            <div class="input-container">
+                <label for="username" class="input-title">Your username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-container">
+                <label for="password" class="input-title">Your password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="input-container">
+                <label for="confirm-password" class="input-title">Confirm password:</label>
+                <input type="password" id="confirm-password" required>
+            </div>
+            <button id="submit-btn">Create Account</button>
+        </form>
+    </div>
+</body>
+</html>
