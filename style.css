@@ -34,11 +34,11 @@ input {
     border: 2px solid red;
 }
 
-.valid:focus {
+.valid {
     border: 2px solid green;
 }
 
-#email-error {
+.error {
     color: red;
     font-size: 14px;
     margin-top: 8px;
