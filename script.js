@@ -5,6 +5,7 @@ const confirmPassword = document.getElementById('confirm-password');
 const username = document.getElementById('username');
 const submitBtn = document.getElementById('submit-btn');
 const text = document.querySelector('h1');
+const text2 = document.querySelector('p');
 
 // Error messages
 const emailError = document.getElementById('email-error');
@@ -16,24 +17,16 @@ const emailRegExp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // Email Validation
-email.addEventListener("input", () => {
-    emailValidation();
-});
+email.addEventListener("input", emailValidation);
 
 // User Validation
-username.addEventListener("mouseleave", () => {
-    usernameValidation();
-});
+username.addEventListener("input", usernameValidation);
 
 // Password Validation 
-password.addEventListener("input", () => {
-    passwordValidation();
-});
+password.addEventListener("input", passwordValidation);
 
 // Confirm password Validation
-confirmPassword.addEventListener('input', () => {
-    confirmPasswordValidation();
-})
+confirmPassword.addEventListener('input', confirmPasswordValidation)
 
   function emailValidation () {
     if (email.value.length == 0) {
@@ -74,42 +67,32 @@ confirmPassword.addEventListener('input', () => {
         passwordError.textContent = "Password should contain at least one digit";
         passwordError.style.display = "block";
     } else if (!/[a-zA-Z]/.test(password.value)) {
-        password.className = "invalid";
-        passwordError.textContent = "Password should contain at least one alphabet";
-        passwordError.style.display = "block";
+      password.className = "invalid";
+      passwordError.textContent = "Password should contain at least one alphabet";
+      passwordError.style.display = "block";
     } else if (password.value.length < 6) {
-        password.className = "invalid";
-        passwordError.textContent = "Password is too short";
-        passwordError.style.display = "block";
+      password.className = "invalid";
+      passwordError.textContent = "Password is too short";
+      passwordError.style.display = "block";
     } else {
-        password.className = "valid";
-        passwordError.textContent = "";
-        passwordError.style.display = "none";
+      password.className = "valid";
+      passwordError.textContent = "";
+      passwordError.style.display = "none";
     }
   }
 
   function confirmPasswordValidation() {
     if (confirmPassword.value.length == 0) {
-        confirmPassword.className = "invalid";
-        confirmPasswordError.textContent = "Please confirm password";
+      confirmPassword.className = "invalid";
+      confirmPasswordError.textContent = "Please confirm password";
     } else if (password.value !== confirmPassword.value) {
-        confirmPassword.className = "invalid";
-        confirmPasswordError.textContent = "Passwords don't match";
-        confirmPasswordError.style.display = "block";
+      confirmPassword.className = "invalid";    confirmPasswordError.textContent = "Passwords don't match";
+      confirmPasswordError.style.display = "block";
     } else {
-        confirmPassword.className = "valid";
-        confirmPasswordError.textContent = "";
-        confirmPasswordError.style.display = "none";
+      confirmPassword.className = "valid";
+      confirmPasswordError.textContent = "";
+      confirmPasswordError.style.display = "none";
     }
-    // if (password.value !== confirmPassword.value && confirmPassword.value !== 0 ) {
-    //     confirmPassword.className = "invalid";
-    //     confirmPasswordError.textContent = "Passwords don't match";
-    //     confirmPasswordError.style.display = "block";
-    // } else {
-    //     confirmPassword.className = "valid";
-    //     confirmPasswordError.textContent = "";
-    //     confirmPasswordError.style.display = "none";
-    // }
   } 
 // What happens when the user tries to submit the data
 submitBtn.addEventListener("click", (event) => {
@@ -126,7 +109,9 @@ submitBtn.addEventListener("click", (event) => {
 
   if (emailError.textContent === "" && usernameError.textContent === "" && passwordError.textContent === "" && confirmPasswordError.textContent === "") {
     form.style.display = "none";
-    text.textContent = 'Form submitted';
+    text.textContent = 'Thank you for registering!';
+    text2.textContent = 'Your form has been submitted';
+  } else {
+    alert("Please fix the errors in the form");
   }
-
 });
