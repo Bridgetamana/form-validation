@@ -6,6 +6,7 @@
 body {
     padding-top: 32px;
     font-family: sans-serif;
+    background-color: rgb(223, 236, 243);
 }
 h1 {
     margin-bottom: 12px;
@@ -15,19 +16,23 @@ h1 {
     flex-direction: column;
     align-items: center;
 }
+form{
+    background-color: white;
+    padding: 32px 32px;
+    border-radius: 10px;
+}
 .input-container {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 .input-title {
     display: block;
     margin-bottom: 8px;
 }
 input {
-    background-color: rgb(228, 221, 221);
     border-radius: 8px;
     border: 1px solid rgb(214, 206, 206);
     padding: 10px 28px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
     outline: none;
 }
 .invalid {
@@ -53,8 +58,9 @@ button {
     border: none;
     cursor: pointer;
     transition: all 0.1s ease;
+    margin-top: 12px;
 }
 
 button:hover {
     opacity: 0.8;
-  }
+}
