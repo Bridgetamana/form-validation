@@ -11,7 +11,8 @@ const text2 = document.querySelector('p');
 const emailError = document.getElementById('email-error');
 const usernameError = document.getElementById('username-error');
 const passwordError = document.getElementById('password-error');
-const confirmPasswordError = document.getElementById('confirm-password-error')
+const confirmPasswordError = document.getElementById('confirm-password-error');
+const errorIcon = document.querySelector('.fa-triangle-exclamation');
 
 const emailRegExp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -28,84 +29,109 @@ password.addEventListener("input", passwordValidation);
 // Confirm password Validation
 confirmPassword.addEventListener('input', confirmPasswordValidation)
 
-  function emailValidation () {
-    if (email.value.length == 0) {
-        email.className = "invalid";
-        emailError.textContent = "Email cannot be empty";
-    } else if (!emailRegExp.test(email.value)) {
-        email.className = "invalid";
-        emailError.textContent = "Email is not valid";
-        emailError.style.display = "block";
-    } else {
-        email.className = "valid";
-        emailError.textContent = "";
-        emailError.style.display = "none";
-    }
-  };
-
-  function usernameValidation() {
-    if (username.value.length == 0) {
-        username.className = "invalid";
-        usernameError.textContent = "Username cannot be empty";
-    } else if (username.value.length < 10) {
-        username.className = "invalid";
-        usernameError.textContent = "Username cannot be less than 10 characters";
-        usernameError.style.display = "block";
-    } else {
-        username.className = "valid";
-        usernameError.textContent = "";
-        usernameError.style.display = "none";
-    }
+// Email validation function
+function emailValidation() {
+  if (email.value.length == 0) {
+    email.className = "invalid";
+    emailError.textContent = "Email cannot be empty";
+  } else if (!emailRegExp.test(email.value)) {
+    email.className = "invalid";
+    emailError.textContent = "Email is not valid";
+    emailError.style.display = "block";
+  } else {
+    email.className = "valid";
+    emailError.textContent = "";
+    emailError.style.display = "none";
   }
+};
 
-  function passwordValidation() {
-    if (password.value.length == 0) {
-        password.className = "invalid";
-        passwordError.textContent = "Password cannot be empty";
-    } else if (!/\d/.test(password.value)) {
-        password.className = "invalid";
-        passwordError.textContent = "Password should contain at least one digit";
-        passwordError.style.display = "block";
-    } else if (!/[a-zA-Z]/.test(password.value)) {
-      password.className = "invalid";
-      passwordError.textContent = "Password should contain at least one alphabet";
-      passwordError.style.display = "block";
-    } else if (password.value.length < 6) {
-      password.className = "invalid";
-      passwordError.textContent = "Password is too short";
-      passwordError.style.display = "block";
-    } else {
-      password.className = "valid";
-      passwordError.textContent = "";
-      passwordError.style.display = "none";
-    }
+// Username validation function
+function usernameValidation() {
+  if (username.value.length == 0) {
+    username.className = "invalid";
+    usernameError.textContent = "Username cannot be empty";
+    usernameError.style.display = "block";
+  } else if (username.value.length < 6) {
+    username.className = "invalid";
+    usernameError.textContent = "Username cannot be less than 6 characters";
+    usernameError.style.display = "block";
+  } else {
+    username.className = "valid";
+    usernameError.textContent = "";
+    usernameError.style.display = "none";
   }
+}
 
-  function confirmPasswordValidation() {
-    if (confirmPassword.value.length == 0) {
-      confirmPassword.className = "invalid";
-      confirmPasswordError.textContent = "Please confirm password";
-    } else if (password.value !== confirmPassword.value) {
-      confirmPassword.className = "invalid";    confirmPasswordError.textContent = "Passwords don't match";
-      confirmPasswordError.style.display = "block";
-    } else {
-      confirmPassword.className = "valid";
-      confirmPasswordError.textContent = "";
-      confirmPasswordError.style.display = "none";
-    }
-  } 
-// What happens when the user tries to submit the data
+// Password validation function
+function passwordValidation() {
+  if (password.value.length == 0) {
+    password.className = "invalid";
+    passwordError.textContent = "Password cannot be empty";
+  } else if (!/\d/.test(password.value)) {
+    password.className = "invalid";
+    passwordError.textContent = "Password should contain at least one digit";
+    passwordError.style.display = "block";
+  } else if (!/[a-zA-Z]/.test(password.value)) {
+    password.className = "invalid";
+    passwordError.textContent = "Password should contain at least one alphabet";
+    passwordError.style.display = "block";
+  } else if (password.value.length < 6) {
+    password.className = "invalid";
+    passwordError.textContent = "Password is too short";
+    passwordError.style.display = "block";
+  } else {
+    password.className = "valid";
+    passwordError.textContent = "";
+    passwordError.style.display = "none";
+  }
+}
+
+// Confirm password validation function
+function confirmPasswordValidation() {
+  if (confirmPassword.value.length == 0) {
+    confirmPassword.className = "invalid";
+    confirmPasswordError.textContent = "Please confirm password";
+  } else if (password.value !== confirmPassword.value) {
+    confirmPassword.className = "invalid"; confirmPasswordError.textContent = "Passwords don't match";
+    confirmPasswordError.style.display = "block";
+  } else {
+    confirmPassword.className = "valid";
+    confirmPasswordError.textContent = "";
+    confirmPasswordError.style.display = "none";
+  }
+}
+
+// Clear error function
+
+function clearError() {
+  if (email.className === "invalid" || username.className === "invalid" || password.className === "invalid" || confirmPassword.className === "invalid") {
+    email.className = "";
+    username.className = "";
+    password.className = "";
+    confirmPassword.className = "";
+  } else {
+    email.className = "";
+    username.className = "";
+    password.className = "";
+    confirmPassword.className = "";
+
+  }
+}
+
+form.addEventListener("input", clearError);
+
+// Submit button 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
 
   // Email Validation
-    emailValidation();
+  emailValidation();
   // Username Validation
-    usernameValidation();
+  usernameValidation();
   // Password Validation 
-    passwordValidation();
+  passwordValidation();
   // Confirm Password Validation 
-    confirmPasswordValidation();
+  confirmPasswordValidation();
 
   if (emailError.textContent === "" && usernameError.textContent === "" && passwordError.textContent === "" && confirmPasswordError.textContent === "") {
     form.style.display = "none";
